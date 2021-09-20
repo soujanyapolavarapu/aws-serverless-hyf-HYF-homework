@@ -1,9 +1,9 @@
 import Products from "./components/Products";
 import Header from "./components/Header";
-import useNotifications from "./hooks/useNotification";
+// import useNotifications from "./hooks/useNotification";
 
 function App() {
-  const { notifications } = useNotifications();
+  // const { notifications } = useNotifications();
 
   return (
     <div className="container">

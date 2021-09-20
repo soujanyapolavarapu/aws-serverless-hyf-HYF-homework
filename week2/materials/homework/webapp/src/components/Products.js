@@ -1,15 +1,29 @@
 import useProducts from "../hooks/useProducts";
+import useNotifications from "../hooks/useNotification";
 
 function Products() {
-  const { products, cart, addProduct, removeProduct } = useProducts();
+  const { products, cart, addProduct, Total, removeProduct } = useProducts();
+  const { notifications, createNotification } = useNotifications();
 
   const isInCart = (product) => {
     return !cart.find((item) => item.id === product.id);
   };
 
+  const productAddInCart =  (product)=>{
+    addProduct(product);
+    // console.log('product added');
+    createNotification(`${product.name} added to your cart`);
+  }
+
+  const productRemoveFrmCart = (product)=>{
+    removeProduct(product);
+    createNotification(`${product.name} removed from your cart`)
+  }
+  
   return (
     <div>
       <div className="row">
+      {notifications && <h2>Notification: {notifications}</h2>}
         {products.map((product) => {
           return (
             <div className="card col-md-4" key={product.id}>
@@ -27,7 +41,7 @@ function Products() {
                 </p>
                 {isInCart(product) && (
                   <button
-                    onClick={() => addProduct(product)}
+                    onClick={() => productAddInCart(product)}
                     className="btn btn-primary"
                   >
                     Select
@@ -35,7 +49,7 @@ function Products() {
                 )}
                 {!isInCart(product) && (
                   <button
-                    onClick={() => removeProduct(product)}
+                    onClick={() => productRemoveFrmCart(product)}
                     className="btn btn-danger"
                   >
                     Remove
@@ -48,7 +62,7 @@ function Products() {
       </div>
       <form>
         <div className="form-group mt-4 col-md-4">
-          <p className="mt-4">You will be charged: ?</p>
+          <p className="mt-4">You will be charged: {Total}</p>
 
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input
