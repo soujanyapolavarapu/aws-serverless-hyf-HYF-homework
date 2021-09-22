@@ -2,8 +2,8 @@ import useProducts from "../hooks/useProducts";
 import useNotifications from "../hooks/useNotification";
 
 function Products() {
-  const { products, cart, addProduct, Total, removeProduct } = useProducts();
-  const { notifications, createNotification } = useNotifications();
+  const { products, cart, addProduct, total, removeProduct } = useProducts();
+  const { notification, createNotification } = useNotifications();
 
   const isInCart = (product) => {
     return !cart.find((item) => item.id === product.id);
@@ -11,7 +11,6 @@ function Products() {
 
   const productAddInCart =  (product)=>{
     addProduct(product);
-    // console.log('product added');
     createNotification(`${product.name} added to your cart`);
   }
 
@@ -23,7 +22,7 @@ function Products() {
   return (
     <div>
       <div className="row">
-      {notifications && <h2>Notification: {notifications}</h2>}
+      {notification && <h2>Notification: {notification}</h2>}
         {products.map((product) => {
           return (
             <div className="card col-md-4" key={product.id}>
@@ -62,7 +61,7 @@ function Products() {
       </div>
       <form>
         <div className="form-group mt-4 col-md-4">
-          <p className="mt-4">You will be charged: {Total}</p>
+          <p className="mt-4">You will be charged: {total}</p>
 
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input

@@ -37,7 +37,6 @@ let initialProducts = productsData.map((item) => {
 function useProducts() {
   const [products] = useState(initialProducts);
   const [cart, setCart] = useState([]);
-  // const [priceSum, setPriceSum] = useState()
 
   const addProduct = (product) => {
     let newCart = cart.concat(product);
@@ -45,22 +44,16 @@ function useProducts() {
   };
 
   const calculateSum = ()=> { 
-    // let totalPriceOfProduct= 0;
-    // let totalProducts= 
     return cart.reduce((carry, product)=>{
-      return carry + parseInt(product.price)
+      return carry + Number(product.price)
     },0);
-
-    //   parseInt(product.price), totalPriceOfProduct);
-    // setCart(totalProducts);
-    
   }
 
   const removeProduct = (product) => {
-    setCart(cart.filter((item) => item.id != product.id));
+    setCart(cart.filter((item) => item.id !== product.id));
   };
 
-  return { products, cart, addProduct, removeProduct, Total: calculateSum() };
+  return { products, cart, addProduct, removeProduct, total: calculateSum() };
 }
 
 export default useProducts;

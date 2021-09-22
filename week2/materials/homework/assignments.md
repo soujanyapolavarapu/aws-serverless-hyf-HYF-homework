@@ -4,19 +4,20 @@
 
 Sync your changes to s3 and write down your s3 bucket url.
 
-bucket url: `https://s3.console.aws.amazon.com/s3/buckets/soujanya-week2-homework?region=us-east-1&tab=objects`
+bucket url: `https://soujanya-week2-homework.s3.amazonaws.com/index.html`
 
 **Assignment 5:**
 
 Right now, the website does not support https. Explain which other AWS service needs to be integrated in order to achieve this.
 
 service name: `AWS Certificate Manager`
+Doc: `https://aws.amazon.com/certificate-manager/`
 
 **Assignment 6:**
 
 Figure out and write down the price per month of storing 51TB on S3.
 
-Price: `First 50 TB / Month:	$0.023 per GB`
+Price: `1172 USD (for first 50 TB / Month costs 23usd and after 1TB cost 22usd)`
 
 Total size of website: `Total Size: 494.6 KiB`
 (aws s3 ls s3://soujanya-week2-homework --recursive --human-readable --summarize)
