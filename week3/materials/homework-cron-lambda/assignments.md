@@ -16,4 +16,4 @@ doc: `https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resourc
 rubbish string: `"Ifmmp-!IZG\"`
 
 **Assignment 4:**
-total count: `?`
+total count: `4`
