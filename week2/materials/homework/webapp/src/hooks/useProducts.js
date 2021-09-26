@@ -43,11 +43,17 @@ function useProducts() {
     setCart(newCart);
   };
 
+  const calculateSum = ()=> { 
+    return cart.reduce((carry, product)=>{
+      return carry + Number(product.price)
+    },0);
+  }
+
   const removeProduct = (product) => {
-    setCart(cart.filter((item) => item.id != product.id));
+    setCart(cart.filter((item) => item.id !== product.id));
   };
 
-  return { products, cart, addProduct, removeProduct };
+  return { products, cart, addProduct, removeProduct, total: calculateSum() };
 }
 
 export default useProducts;
