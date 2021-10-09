@@ -11,7 +11,18 @@ exports.s3PriceAnalyzer = async (event) => {
     return s3.getObject(params).promise().then(data => {
       // implement code here
       let items = data.Body.toString().split("\n")
-      items.forEach(item => console.log(item))
+      const itemsWithLowPrice = items.map(item => item.split(',')).filter(item=> Number(item[2])<10)
+      const arrayOfLowPrices= itemsWithLowPrice.map(item=>{console.log(Number(item[2]))
+      return Number(item[2])
+    })
+      console.log({
+          itemsWithLowPrice,
+           arrayOfLowPrices,         
+          minimumPrice: Math.min(...arrayOfLowPrices),
+          maximumPrice: Math.max(...arrayOfLowPrices),
+        });    
+
+     return itemsWithLowPrice;
 
     }).catch(err => {
       console.error("Error calling S3 getObject:", err);
